@@ -1,6 +1,5 @@
 export function base64toBlob(data) {
-    const base64WithoutPrefix = data.substr('data:application/pdf;base64,'.length);
-    const bytes = window.atob(base64WithoutPrefix);
+    const bytes = window.atob(data);
     let length = bytes.length;
     let out = new Uint8Array(length);
     while (length--) {
@@ -29,7 +28,7 @@ export function openEmbedBase64(embed, options) {
                 type="${embed.type}" />
             </body>
         </html>`;
-    const target = window.open("", "_blank");
+    const target = window.open("about:blank", "_blank");
     setTimeout(() => {
         target.document.write(html);
     }, 0);
